@@ -1,10 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, {  useState } from "react";
 import emailjs from "@emailjs/browser";
 import useAlert from "../hooks/useAlert";
 import Alert from "../components/Alert";
 
 export const Contact = () => {
-	const formRef = useRef();
+	// const formRef = useRef();
 	const [form, setForm] = useState({
 		name: "",
 		email: "",
@@ -14,7 +14,15 @@ export const Contact = () => {
 	const [loading, setLoading] = useState(false);
 	const { showAlert, alert, hideAlert } = useAlert();
 
-	const handleChange = ({ target: { name, value } }) => {
+	// const handleChange = ({ target: { name, value } }) => {
+	// 	setForm((currForm) => {
+	// 		return { ...currForm, [name]: value };
+	// 	});
+	// };
+	const handleChange = (
+		event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		const { name, value } = event.target;
 		setForm((currForm) => {
 			return { ...currForm, [name]: value };
 		});
@@ -34,25 +42,26 @@ export const Contact = () => {
 					from_email: form.email,
 					to_email: "karthicraja2812@gmail.com",
 					message: form.message,
-          email: form.email,
-          phone: form.phone
+					email: form.email,
+					phone: form.phone,
 				},
 				"pjtgH_dVQwj1mDR67"
 			)
 			.then(() => {
 				setLoading(false);
 				showAlert({
-					show: true,
+					// show: true,
 					text: "Thank you for your message 😉",
 					type: "success",
 				});
 
 				setTimeout(() => {
-					hideAlert(false);
+					hideAlert();
+					// hideAlert(false);
 					setForm({
 						name: "",
 						email: "",
-            phone: "",
+						phone: "",
 						message: "",
 					});
 				}, 3000);
@@ -61,7 +70,7 @@ export const Contact = () => {
 				setLoading(false);
 				console.log(error);
 				showAlert({
-					show: true,
+					// show: true,
 					text: "I didn't recive your message 😉",
 					type: "danger",
 				});
@@ -75,7 +84,7 @@ export const Contact = () => {
 				<h1 className="head-text">Get in Touch</h1>
 
 				<form
-					ref={formRef}
+					// ref={formRef}
 					onSubmit={handleSubmit}
 					className="w-full flex flex-col gap-7 mt-14"
 				>
@@ -108,7 +117,8 @@ export const Contact = () => {
 						<input
 							type="tel"
 							name="phone"
-							pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+							pattern="[0-9]{10}"
+							// pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
 							className="input"
 							placeholder="+91"
 							value={form.phone}
@@ -119,7 +129,7 @@ export const Contact = () => {
 						Your Message
 						<textarea
 							name="message"
-							rows="4"
+							// rows="4"
 							className="textarea"
 							placeholder="Write your thoughts here..."
 							value={form.message}

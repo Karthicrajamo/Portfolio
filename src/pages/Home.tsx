@@ -40,8 +40,8 @@ export const Home = () => {
 	};
 
 	const [islandScale, islandPosition] = adjustIslandForScreenSize();
+	
 	const [planeScale, planePosition] = adjustPlaneScreenSize();
-
 	return (
 		<div className="w-full h-screen relative">
 			<div className="absolute top-28 left-0 right-0 z-10 justify-center items-center flex">{currentStage && <HomeInfo currentStage={currentStage} />}</div>
@@ -62,7 +62,7 @@ export const Home = () => {
 						intensity={2}
 					/>
 					<hemisphereLight
-						skyColor="#b1e1ff"
+						// skyColor="#b1e1ff"
 						groundColor="#000000"
 						intensity={1}
 					/>
@@ -78,8 +78,8 @@ export const Home = () => {
 					<Bird />
 					<Plane
 						isRotating={isRotating}
-						position={planePosition}
 						scale={planeScale}
+						position={planePosition}
 						rotation={[0, 20.1, 0]}
 					/>
 				</Suspense>

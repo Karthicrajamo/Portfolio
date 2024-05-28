@@ -1,21 +1,26 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
 
 import birdScene from "../assets/3D/bird.glb";
 import { useFrame } from "@react-three/fiber";
 
 const bird = () => {
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const birdRef = useRef();
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const { scene, animations } = useGLTF(birdScene);
 	//OR  --> const bird = useGLTF(birdScene);
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	const { actions } = useAnimations(animations, birdRef);
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useEffect(() => {
 		actions["Take 001"].play();
 	}, []);
 
+	// eslint-disable-next-line react-hooks/rules-of-hooks
 	useFrame(({ clock, camera }) => {
 		birdRef.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
 

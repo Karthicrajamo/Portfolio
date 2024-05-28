@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { logo } from "../assets/images/logo";
 
@@ -24,6 +23,14 @@ const Navbar = () => {
 					}
 				>
 					Projects
+				</NavLink>
+				<NavLink
+					to="/contact"
+					className={({ isActive }) =>
+						isActive ? "text-blue-600" : "text-black"
+					}
+				>
+					Contact Us
 				</NavLink>
 			</nav>
 		</header>
